@@ -22,15 +22,19 @@ class CrazyEights {
   }
 
   play() {
+    let someoneWon = false;
     this.initialDraw();
-    this.players.forEach( (player) => {
-      this.uiInterface.displayStatus(this);
-      this.uiInterface.playCard(player, this);
+    while (!someoneWon) {
+      this.players.forEach((player) => {
+        this.uiInterface.displayStatus(this);
+        this.uiInterface.playCard(player, this);
 
-      if (player.hasWon()) {
-        return uiInterface.hasWon(player);
-      }
-    });
+        if (player.hasWon()) {
+          this.uiInterface.hasWon(player);
+          someoneWon = true;
+        }
+      });
+    }
     return 'win';
   }
 }
