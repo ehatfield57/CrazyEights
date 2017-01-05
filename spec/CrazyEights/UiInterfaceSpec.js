@@ -1,5 +1,6 @@
 var UiInterface = require('../../app/UiInterface.js');
 var CrazyEights = require('../../app/CrazyEights.js');
+var Card = require('../../app/Card.js');
 
 describe('UiInterface', () => {
   let uiInterface;
@@ -16,12 +17,12 @@ describe('UiInterface', () => {
   });
 
   it('should play a card', () => {
-    let aCard = uiInterface.playCard(theGame.players[0], theGame);
+    let aCard = uiInterface.playCard(theGame.players[0], new Card('2-H'));
     console.log(`uiInteface test player ${theGame.players[0].name} played: ${aCard}`);
   });
 
   it('should play a robot card', () => {
-    let aCard = uiInterface.playCard(theGame.players[1], theGame);
+    let aCard = uiInterface.playCard(theGame.players[1], new Card('2-H'));
     console.log(`uiInteface test player ${theGame.players[1].name} played: ${aCard}`);
   });
 });

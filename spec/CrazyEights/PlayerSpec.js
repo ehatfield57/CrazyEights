@@ -1,5 +1,6 @@
 var Player = require('../../app/Player.js');
 var Deck = require('../../app/Deck.js');
+var Card = require('../../app/Card.js');
 
 describe('Player', () => {
   let playerName = 'Fred';
@@ -26,7 +27,7 @@ describe('Player', () => {
 
   it('can play a card', () => {
     aPlayer.drawCardFrom(aDeck);
-    let aCard = aPlayer.playACard();
+    let aCard = aPlayer.playACard(new Card('2-H'));
     expect(aCard.constructor.name).toBe('Card');
   });
 

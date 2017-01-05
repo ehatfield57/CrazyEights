@@ -10,8 +10,7 @@ class Player {
     return aCard;
   }
 
-  playACard() {
-    console.log('playACard called');
+  playACard(topCard) {
     return this.hand.pop();
   }
 
