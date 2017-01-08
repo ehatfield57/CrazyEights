@@ -11,10 +11,10 @@ describe('Card', () => {
   });
 
   it('has a valid Rank', () => {
-    expect(aCard.rank()).toMatch(/^(A|2|3|4|5|6|7|8|9|10|J|Q|K)$/);
+    expect(aCard.rank).toMatch(/^(A|2|3|4|5|6|7|8|9|10|J|Q|K)$/);
   });
 
   it('has a valid Suite', () => {
-    expect(aCard.suite()).toMatch(/^[DSHC]$/);
+    expect(aCard.suite).toMatch(/^[DSHC]$/);
   });
 });

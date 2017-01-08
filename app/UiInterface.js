@@ -30,6 +30,12 @@ class UiInterface {
     }
   }
 
+  askForNewSuite(player) {
+    if (/robot/i.test(player.name)) {
+    } else {
+    }
+  }
+
   hasWon(player) {
     console.log(`\nPlayer ${player.name} has won!`);
     return 'win';
