@@ -27,7 +27,7 @@ class CrazyEights {
     while (!someoneWon) {
       this.players.forEach((player) => {
         this.uiInterface.displayStatus(this);
-        this.uiInterface.playCard(player, this.table.getTopCard());
+        this.uiInterface.playCard(player, this.table.getTopCard(), this.table.deck);
 
         if (player.hasWon()) {
           this.uiInterface.hasWon(player);

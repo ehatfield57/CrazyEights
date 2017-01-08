@@ -12,9 +12,9 @@ class UiInterface {
     return true; // Used in test to show existence of this function
   }
 
-  playCard(player, topCard) {
+  playCard(player, topCard, deck) {
     if (/robot/i.test(player.name)) {
-      let aCard = player.playACard(topCard);
+      let aCard = player.playACard(topCard, deck);
       console.log(`Player ${player.name} plays a ${aCard}`);
 
     } else {

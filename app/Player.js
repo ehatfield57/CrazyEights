@@ -1,21 +1,27 @@
+var Hand = require('./Hand.js');
+
 class Player {
   constructor(aName) {
     this.name = aName;
-    this.hand = [];
+    this.hand = new Hand();
+  }
+
+  addCardToHand(card) {
+    this.hand.accept(card);
   }
 
   drawCardFrom(deck) {
     let aCard = deck.draw();
-    this.hand.push( aCard );
+    this.addCardToHand( aCard );
     return aCard;
   }
 
-  playACard(topCard) {
-    return this.hand.pop();
+  playACard(topCard, deck) {
+    return this.hand.pick();
   }
 
   remainingCards() {
-    return this.hand.length;
+    return this.hand.cardsRemaining();
   }
 
   hasWon() {
