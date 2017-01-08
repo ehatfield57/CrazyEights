@@ -12,16 +12,16 @@ describe('UiInterface', () => {
     uiInterface = new UiInterface();
   });
 
-  it('should display the status', () => {
+  xit('should display the status', () => {
     expect(uiInterface.displayStatus(theGame)).toBe(true);
   });
 
-  it('should play a card', () => {
+  xit('should play a card', () => {
     let aCard = uiInterface.playCard(theGame.players[0], new Card('2-H'));
     console.log(`uiInteface test player ${theGame.players[0].name} played: ${aCard}`);
   });
 
-  it('should play a robot card', () => {
+  xit('should play a robot card', () => {
     let aCard = uiInterface.playCard(theGame.players[1], new Card('2-H'));
     console.log(`uiInteface test player ${theGame.players[1].name} played: ${aCard}`);
   });
