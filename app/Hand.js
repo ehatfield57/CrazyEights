@@ -16,7 +16,7 @@ class Hand {
   }
 
   pick(index) {
-    return this.cards.slice(index, index + 1);
+    return this.cards.splice(index, 1);
   }
 }
 

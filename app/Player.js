@@ -17,7 +17,7 @@ class Player {
   }
 
   playACard(topCard, deck) {
-    return this.hand.pick();
+    return this.hand.pick(0);
   }
 
   remainingCards() {

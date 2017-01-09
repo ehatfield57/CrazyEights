@@ -2,8 +2,10 @@ var Card = require('./Card.js');
 var UiInterface = require('./UiInterface.js');
 
 class Ai {
-  constructor(hand) {
-    this.hand = hand;
+  constructor(player, deck) {
+    this.hand = player.hand;
+    this.player = player;
+    this.deck = deck;
   }
 
   report() {
@@ -22,6 +24,9 @@ class Ai {
     let card = '';
     while (card === '') {
       card = this.playFromExistingHand(topCard);
+      if (!card) {
+        this.hand.accept( this.deck.draw() );
+      }
     }
     return card;
   }
@@ -44,7 +49,15 @@ class Ai {
       return this.hand.pick( report[topCardRank].pop() );
     }
 
+    if (report['8'].length > 0) {
+      return this.hand.pick( report['8'].pop() );
+    }
+
     return '';
+  }
+
+  cardsRemainingInHand() {
+    return this.hand.cardsRemaining();
   }
 }
 
