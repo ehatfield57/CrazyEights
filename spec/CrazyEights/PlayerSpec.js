@@ -37,7 +37,6 @@ describe('Player', () => {
     aPlayer.drawCardFrom(aDeck);
     let numCardsInHand = aPlayer.remainingCards();
     let aCard = aPlayer.playACard(aDeck.draw(), aDeck);
-    console.log('Hi Edward, aCard:',aCard);
     expect(aCard.constructor.name).toBe('Card');
     expect(numCardsInHand - 1).toBe(aPlayer.remainingCards());
   });
