@@ -29,6 +29,7 @@ describe('Player', () => {
 
   it('can draw a card', () => {
     let aCard = aPlayer.drawCardFrom(aDeck);
+    console.log('Hi Edward, aCard:',aCard);
     expect(aCard.constructor.name).toBe('Card');
   });
 

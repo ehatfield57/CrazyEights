@@ -17,4 +17,12 @@ describe('Card', () => {
   it('has a valid Suite', () => {
     expect(aCard.suite).toMatch(/^[DSHC]$/);
   });
+
+  it('can have the suite changed and reset', () => {
+    let testCard = new Card('8-H');
+    expect(testCard.suite).toBe('H');
+    testCard.changeSuite('S');
+    expect(testCard.suite).toBe('S');
+    expect(testCard.toString()).toBe('8-H');
+  });
 });

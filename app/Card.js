@@ -5,6 +5,14 @@ class Card {
     this.suite = this.card.split('-')[1];
   }
 
+  changeSuite(suite) {
+    this.suite = suite;
+  }
+
+  reset() {
+    this.suite = this.card.split('-')[1];
+  }
+
   toString() {
     return this.card;
   }
