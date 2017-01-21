@@ -1,8 +1,8 @@
-var Ai = require('../../app/Ai.js');
+var Ai = require('../app/Ai.js');
 
-var Player = require('../../app/Player.js');
-var Card = require('../../app/Card.js');
-var Deck = require('../../app/Deck.js');
+var Player = require('../app/Player.js');
+var Card = require('../app/Card.js');
+var Deck = require('../app/Deck.js');
 
 describe('Ai', () => {
   let aPlayer;

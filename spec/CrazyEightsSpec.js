@@ -1,4 +1,4 @@
-var CrazyEights = require('../../app/CrazyEights.js');
+var CrazyEights = require('../app/CrazyEights.js');
 
 var players = ['Player', 'Robot'];
 

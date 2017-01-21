@@ -1,5 +1,5 @@
-var Card = require('../../app/Card.js');
-var Deck = require('../../app/Deck.js');
+var Card = require('../app/Card.js');
+var Deck = require('../app/Deck.js');
 
 describe('Card', () => {
   let theDeck;

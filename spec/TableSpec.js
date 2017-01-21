@@ -1,5 +1,5 @@
-var Table = require('../../app/Table.js');
-var Deck  = require('../../app/Deck.js');
+var Table = require('../app/Table.js');
+var Deck  = require('../app/Deck.js');
 
 describe('Table', () => {
   let theTable;

@@ -1,6 +1,6 @@
-var Player = require('../../app/Player.js');
-var Deck = require('../../app/Deck.js');
-var Card = require('../../app/Card.js');
+var Player = require('../app/Player.js');
+var Deck = require('../app/Deck.js');
+var Card = require('../app/Card.js');
 
 describe('Player', () => {
   let playerName = 'Fred';

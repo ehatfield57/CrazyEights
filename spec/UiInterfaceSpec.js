@@ -1,6 +1,6 @@
-var UiInterface = require('../../app/UiInterface.js');
-var CrazyEights = require('../../app/CrazyEights.js');
-var Card = require('../../app/Card.js');
+var UiInterface = require('../app/UiInterface.js');
+var CrazyEights = require('../app/CrazyEights.js');
+var Card = require('../app/Card.js');
 
 describe('UiInterface', () => {
   let uiInterface;

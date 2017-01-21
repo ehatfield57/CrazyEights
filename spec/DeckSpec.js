@@ -1,4 +1,4 @@
-var Deck = require('../../app/Deck.js');
+var Deck = require('../app/Deck.js');
 
 describe('Deck', () => {
   let deck;

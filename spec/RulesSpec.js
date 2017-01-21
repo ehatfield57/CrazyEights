@@ -1,4 +1,4 @@
-let Rules = require('../../app/Rules.js');
+let Rules = require('../app/Rules.js');
 
 describe('Rules', () => {
   let ruleSet;
