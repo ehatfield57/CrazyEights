@@ -18,6 +18,14 @@ class Hand {
   pick(index) {
     return this.cards.splice(index, 1)[0];
   }
+
+  inHand(aCard) {
+    return this.cards.map( (card) => card.card ).includes(aCard);
+  }
+
+  toString() {
+    return this.cards.map( (card) => card.card ).join(', ');
+  }
 }
 
 module.exports = Hand;

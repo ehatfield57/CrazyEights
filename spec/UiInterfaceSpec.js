@@ -21,8 +21,18 @@ describe('UiInterface', () => {
     console.log(`uiInteface test player ${theGame.players[0].name} played: ${aCard}`);
   });
 
-  it('should play a robot card', () => {
+  xit('should play a robot card', () => {
     let aCard = uiInterface.playCard(theGame.players[1], new Card('2-H'));
+    console.log(`uiInteface test player ${theGame.players[1].name} played: ${aCard}`);
+  });
+
+  xit('should change suite when an 8 is played', () => {
+    let aCard = uiInterface.playCard(theGame.players[0], new Card('8-H'));
+    console.log(`uiInteface test player ${theGame.players[0].name} played: ${aCard}`);
+  });
+
+  xit('should change suite when the robot plays an 8 card', () => {
+    let aCard = uiInterface.playCard(theGame.players[1], new Card('8-H'));
     console.log(`uiInteface test player ${theGame.players[1].name} played: ${aCard}`);
   });
 });

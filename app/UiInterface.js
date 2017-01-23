@@ -1,4 +1,4 @@
-var prompt = require('Prompt');
+const readline = require('readline');
 
 class UiInterface {
   constructor() {
@@ -13,26 +13,68 @@ class UiInterface {
   }
 
   playCard(player, topCard, deck) {
-    if (/robot/i.test(player.name)) {
-      let aCard = player.playACard(topCard, deck);
-      console.log(`Player ${player.name} plays a ${aCard}`);
+    return new Promise( (resolve, failure) => {
+      let aCard = '';
+      if (/robot/i.test(player.name)) {
+        aCard = player.playACard(topCard, deck);
+        console.log(`Player ${player.name} plays a ${aCard}`);
 
-    } else {
-      console.log(`Play a card ${player.name}: ${player.hand}`);
-      prompt.start();
-      prompt.get([{
-        name: 'card',
-        default: '2-C'
-      }], (err, result) => {
-        if (err) { throw err; }
-        console.log(`Player ${player.name} plays a ${result.card}`);
-      });
-    }
+      } else {
+        this.askUser(
+          `\nPlay a card ${player.name} (${player.hand}): `,
+          (testCard) => {
+            let bar = player.hand.inHand(testCard);
+
+            if (player.hand.inHand(testCard)) {
+              return testCard
+            } else {
+              console.log(`Sorry, but that card is not in players ${player.name}s hand. Please try again.\n`);
+            }
+          }
+        ).then( (aCardName) => {
+          resolve(aCardName);
+        });
+      }
+    });
   }
+
+  askUser(prompt, validation) {
+    return new Promise( (resolve) => {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+
+      rl.question(prompt, (answer) => {
+        rl.close();
+        if (answer === 'quit' || answer === 'exit') {
+          throw('quit');
+        } else if (validation(answer)) {
+          resolve(answer);
+        } else {
+          return this.askUser(prompt, validation);
+        }
+      });
+    });
+  }
+
 
   askForNewSuite(player) {
     if (/robot/i.test(player.name)) {
+      // Generate report based on robot hand, and choose highest number of suite
     } else {
+      this.askUser(
+        `\nSet the new suite ${player.name}: `,
+        (newSuite) => {
+          if (newSuite.test(/^[HCDS]$/)) {
+            return newSuite
+          } else {
+            console.log(`Sorry, but that's not a valid suite. Please try again.\n`);
+          }
+        }
+      ).then( (aSuite) => {
+        resolve(aSuite);
+      });
     }
   }
 
