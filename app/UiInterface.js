@@ -1,7 +1,10 @@
-const readline = require('readline');
+const readlineSync = require('readline-sync');
+const Rules = require('./Rules.js');
+const Card = require('./Card.js');
 
 class UiInterface {
   constructor() {
+    this.rules = new Rules();
   }
 
   displayStatus(game) {
@@ -13,48 +16,30 @@ class UiInterface {
   }
 
   playCard(player, topCard, deck) {
-    return new Promise( (resolve, failure) => {
-      let aCard = '';
-      if (/robot/i.test(player.name)) {
-        aCard = player.playACard(topCard, deck);
-        console.log(`Player ${player.name} plays a ${aCard}`);
+    if (/robot/i.test(player.name)) {
+      let aCard = player.playACard(topCard, deck);
+      console.log(`Player ${player.name} plays a ${aCard}`);
+      return aCard.card;
 
-      } else {
-        this.askUser(
+    } else {
+      let aCardName = this.askUser(
           `\nPlay a card ${player.name} (${player.hand}): `,
-          (testCard) => {
-            let bar = player.hand.inHand(testCard);
-
-            if (player.hand.inHand(testCard)) {
-              return testCard
-            } else {
-              console.log(`Sorry, but that card is not in players ${player.name}s hand. Please try again.\n`);
-            }
-          }
-        ).then( (aCardName) => {
-          resolve(aCardName);
-        });
+          player.hand.cardNames()
+      );
+      if (this.rules.validPlay(new Card(aCardName), topCard)) {
+        player.removeCardFromHand(aCardName);
+        console.log(`Player ${player.name} plays a ${aCardName}`);
+        return aCardName;
+      } else {
+        console.log('Invalid card played, please try again');
+        this.playCard(player, topCard, deck);
       }
-    });
+    }
   }
 
-  askUser(prompt, validation) {
-    return new Promise( (resolve) => {
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-      });
-
-      rl.question(prompt, (answer) => {
-        rl.close();
-        if (answer === 'quit' || answer === 'exit') {
-          throw('quit');
-        } else if (validation(answer)) {
-          resolve(answer);
-        } else {
-          return this.askUser(prompt, validation);
-        }
-      });
+  askUser(prompt, validValues) {
+    return readlineSync.question(prompt, {
+      limit: validValues
     });
   }
 
@@ -64,17 +49,9 @@ class UiInterface {
       // Generate report based on robot hand, and choose highest number of suite
     } else {
       this.askUser(
-        `\nSet the new suite ${player.name}: `,
-        (newSuite) => {
-          if (newSuite.test(/^[HCDS]$/)) {
-            return newSuite
-          } else {
-            console.log(`Sorry, but that's not a valid suite. Please try again.\n`);
-          }
-        }
-      ).then( (aSuite) => {
-        resolve(aSuite);
-      });
+          `\nSet the new suite ${player.name}: `,
+          ['H','C','D','S']
+      );
     }
   }
 

@@ -16,6 +16,10 @@ class Player {
     return aCard;
   }
 
+  removeCardFromHand(cardName) {
+    this.hand.removeCard(cardName);
+  }
+
   playACard(topCard, deck) {
     return this.hand.pick(0);
   }
